@@ -2,19 +2,27 @@
 session_start();
 
 include("../../tutors/funcs.php");
+sschk();
+
+$page_flg = 0;
+
+if(!empty($_POST['add'])){
+  $page_flg = 1;
+}
 
 $pdo = db_conn();
-
-$id = $_SESSION["id"];
 
 $stmt = $pdo -> prepare("SELECT * FROM calendar_table WHERE STUDENT=:lid");
 $stmt->bindValue(':lid',$_SESSION["lid"], PDO::PARAM_STR);
 $status = $stmt -> execute();
 
+// var_dump($_POST);
+
+
+
+
+
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,13 +36,99 @@ $status = $stmt -> execute();
   <link rel="stylesheet" href="core/main.css">
   <link href='daygrid/main.css' rel='stylesheet' />
   <link href='timegrid/main.css' rel='stylesheet' />
+
+  <style>
+    label {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      width: 150px;
+    }
+
+    .list-group-item{
+      display:inline-block;
+    }
+
+    .list-group-item li{
+      display: inline-block;
+      margin:  0;
+      text-align: left;
+    }
+
+    #exampleFormControlTextarea1{
+      display:none!important;
+    }
+
+  </style>
 </head>
 
 <body>
-<a href="../../tutors/point.php">ポイント確認画面</a>
+  <a href="../../tutors/point.php">ポイント確認画面</a>
+  <?php if($page_flg === 1):?>
+    <div class="container w-50">
+    
+      <form method="post" action="ca_insert.php">
+        <ul class="list-group list-group-flush">
+          <div class="list-group-item pt-3 pb-3">
+            <label>日付</label>
+            <li><?= $_POST["day"]?></li>
+          </div>
+
+          <div class="list-group-item pt-3 pb-3">
+            <label>質問タイトル</label>
+            <li><?= $_POST["textTitle"]?></li>
+          </div>
+
+          <div class="list-group-item pt-3 pb-3">
+            <label>開始時間</label>
+            <li><?= $_POST["start"]?></li>
+          </div>
+
+          <div class="list-group-item pt-3 pb-3">
+            <label>終了時間</label>
+            <li><?= $_POST["end"]?></li>
+          </div>
+
+          <div class="list-group-item pt-3 pb-3">
+            <label>質問内容</label>
+            <li><?= $_POST["text"]?></li>
+          </div>
+        </ul>
+        <input class="btn btn-success" type="submit" name="btn_submit" value="予約する">
+        <div class="form-group">
+          <input type="hidden" name="day" class="form-control" id="exampleFormControlInput1" value="<?= $_POST["day"]?>">
+        </div>
+
+        <div class="form-group">
+          <input type="hidden" name="textTitle" class="form-control" id="exampleFormControlInput2" value="<?= $_POST["textTitle"]?>">
+        </div>
+
+        <div class="form-group">
+          
+          <input type="hidden" name="start" class="form-control" id="exampleFormControlInput3" value="<?= $_POST["start"]?>">
+        </div>
+
+        <div class="form-group">
+          <input type="hidden" name="end" class="form-control" id="exampleFormControlInput4" value="<?= $_POST["end"]?>">
+        </div>
+
+        <div class="form-group">
+          <textarea type="hidden" name="text" class="form-control" id="exampleFormControlTextarea1" rows="3"><?= $_POST["text"]?></textarea>
+        </div>
+
+        <div class="form-group">
+          <input type="hidden" name="color" class="form-control" id="exampleFormControlInput5" value="<?= $_POST["color"]?>">
+        </div>
+  
+  
+      </form>
+    </div>
+  <?php elseif($page_flg === 2):?>
+    
+  <?php else: ?>
   <div class="container">
-  <a href="../../tutors/logout.php"><button type="button" class="btn btn-primary">Logout</button></a>
-  <a href="cal_tutor.php"><button type="button" class="btn btn-success">tutor</button></a>
+    <a href="../../tutors/logout.php"><button type="button" class="btn btn-primary">Logout</button></a>
+    <a href="cal_tutor.php"><button type="button" class="btn btn-success">tutor</button></a>
     <div class="row">
       <div class="col"></div>
       <div class="col-7">
@@ -55,23 +149,58 @@ $status = $stmt -> execute();
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="ca_insert.php" method="post">
+        <form action="" method="post" class="container">
           <div class="modal-body">
             <!-- ↓ここにモーダルの説明部分が表示される -->
             <!-- ID: <input type="text" id='txtId' name='txtId'><br> -->
-  
-            日付: <input type="text" id="txtDay" name="day"><br>
+
+            <!-- 日付: <input type="text" id="txtDay" name="day"><br>
             タイトル: <input type="text" id="txtTitle" name="textTitle"><br>
-            開始時間: <input type="text" id="txtTime" name="start" value="18:00"><br>
-            終了時間: <input type="text" name="end"><br>
+            開始時間: <input type="text" id="start" name="start" value="18:00"><br>
+            終了時間: <input type="text" id="end" name="end"><br>
             詳細: <textarea id="txtDescription" name="text" rows="3"></textarea><br>
-            色: <input type="color" id="txtColor" name="color" value="#ff0000"><br>
-  
+            色: <input type="color" id="txtColor" name="color" value="#ff0000"><br> -->
+
+              <div class="form-group">
+                <label for="txtDay">日付</label>
+                <input type="text" class="form-control" id="txtDay" name="day">
+              </div>
+              <div class="form-group">
+                <label for="txtTitle">言語</label>
+                <input type="text" class="form-control" id="txtTitle" name="textTitle">
+              </div>
+              <div class="form-group">
+                <label for="start">開始時間</label>
+                <select class="form-control" id="start" name="start">
+                  <option>18:00</option>
+                  <option>19:00</option>
+                  <option>20:00</option>
+                  <option>21:00</option>
+                  <option>22:00</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="end">終了時間</label>
+                <select class="form-control" id="end" name="end">
+                  <option>19:00</option>
+                  <option>20:00</option>
+                  <option>21:00</option>
+                  <option>22:00</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="text">詳細</label>
+                <textarea class="form-control" id="text" rows="3" name="text"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="txtTitle">色</label>
+                <input type="color" class="form-control" id="color" name="color">
+              </div>
+
           </div>
           <div class="modal-footer">
-            <input type="submit" id="btnAdd" class="btn btn-success" name="add" value="追加">
-            <button type="button" class="btn btn-success">修正</button>
-            <button type="button" class="btn btn-danger">削除</button>
+            <input type="submit" id="btnAdd" class="btn btn-success" name="add" value="入力内容を確認する">
             <button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
           </div>
         </form>
@@ -79,14 +208,15 @@ $status = $stmt -> execute();
     </div>
   </div>
   <!-- モーダルここまで -->
+  <?php endif; ?>
 
 
 
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src='core/main.js'></script>
   <script src='daygrid/main.js'></script>
   <script src='interaction/main.js'></script>
@@ -131,8 +261,11 @@ $status = $stmt -> execute();
 
         events: [ //ここに記入してイベントを作る
 
-        //ここでデータベースの内容を繰り返しで表示
-        <?php while($r = $stmt -> fetch(PDO::FETCH_ASSOC)){ ?>
+          //ここでデータベースの内容を繰り返しで表示
+          <?php if($page_flg === 1):?>
+
+          <?php else:?>
+          <?php while($r = $stmt -> fetch(PDO::FETCH_ASSOC)){?>
           {
             title: '<?= $r["title"]?>',
             descripcion: '<?= $r["text"]?>',
@@ -141,8 +274,8 @@ $status = $stmt -> execute();
             //ここに記述すると個別に色を設定可能
             color: '<?= $r["color"]?>',
             textColor: 'gray'
-          },
-        <?php }?>
+            }, <?php } ?>
+          <?php endif;?>
 
 
           // {
@@ -201,10 +334,10 @@ $status = $stmt -> execute();
 
 
       //   }),
-        //追加ボタンを押した時の記述ここまで////////////////////////////////////
+      //追加ボタンを押した時の記述ここまで////////////////////////////////////
 
 
-        calendar.render();
+      calendar.render();
     });
   </script>
 </body>
