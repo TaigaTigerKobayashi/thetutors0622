@@ -50,7 +50,7 @@ $php_json = json_encode($php_array);
 
 <!-- Main[Start] -->
 <div>
-    <h1> G's TOKYO && Fukuoka Tutor Pointランキング</h1>
+    <h1> G's TOKYO && Fukuoka Tutor Point</h1>
     <div class="container p-3 mb-2 bg-success text-white"><?php echo $view; ?></div>
 </div>
 
