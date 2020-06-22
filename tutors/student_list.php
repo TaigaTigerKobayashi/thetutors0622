@@ -30,13 +30,13 @@ if ($status == false) {
   // $view .='</>';
 //以下はupdateのリンクタグの記述
   $view .='  ';
-  $view .='<a href="u_view.php? id='.$r["id"].'">';
-  $view .='[更新]';
+  $view .='<a class="btn btn-sm btn-primary" href="u_view.php? id='.$r["id"].'">';
+  $view .='更新';
   $view .='</a>';
 //以下はdeleteのリンクタグの記述
   $view .='  ';
-  $view .='<a href="delete.php? id='.$r["id"].'">';
-  $view .='[削除]';
+  $view .='<a class="btn btn-sm btn-primary" href="delete.php? id='.$r["id"].'">';
+  $view .='削除';
   $view .='</a>';
   $view .='</p>';
     }
@@ -66,8 +66,8 @@ if ($status == false) {
 
 <!-- Main[Start] -->
 <div>
-    <h1> ユーザー一覧</h1>
-    <div class="container jumbotron"><?php echo $view; ?></div>
+<h2 class="text-center container text-secondary">予約履歴一覧</h2>
+    <div class="container p-3 mb-2 bg-success text-white"><?php echo $view; ?></div>
 </div>
 <!-- Main[End] -->
 
