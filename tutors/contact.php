@@ -213,8 +213,10 @@ if( !empty($_POST['btn_confirm']) ) {
                 </div>
                 <!--Grid row-->
 
-                <div class="text-center text-md-left" style="display:flex;justify-content:center;">
-                    <input class="btn btn-primary" type="submit" name="btn_confirm" value="入力内容を確認する" style="color:white;"></input>
+		<div class="text-center text-md-left" style="display:flex;justify-content:center;">
+                    <p class="m-1">
+                        <input class="btn btn-primary" type="submit" name="btn_confirm" value="入力内容を確認する" style="color:white;"></input>
+                    </p>
                 </div>
                 <div class="status"></div>
 
