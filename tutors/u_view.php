@@ -41,26 +41,24 @@ $row = $stmt->fetch();
 <head>
   <meta charset="UTF-8">
   <title>登録情報の更新画面</title>
-
+  <link rel="stylesheet" href="css/range.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+
 <?php include('kanriHeader.php'); ?>
 
 <!-- Head[Start] -->
 <header>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-    </div>
-  </nav>
 </header>
 <!-- Head[End] -->
-<p><a href="student_list.php">ユーザー一覧へ戻る</a></p>
+<p><a class="btn btn-sm btn-primary" href="student_list.php">ユーザー一覧へ戻る</a></p>
 
 <!-- Main[Start] -->
+<h2 class="text-center container bg-success text-whitey">予約情報</h2>
 <form method="post" action="update.php">
   <div class="jumbotron">
    <fieldset>
-    <legend>予約情報</legend>
      <label>日にち<input type="text" name="day" value="<?=$row["day"]?>"></label><br>
      <label>開始時間<input type="text" name="start" value="<?=$row["start"]?>"></label><br>
      <label>終了時間<input type="text" name="end" value="<?=$row["end"]?>"></label><br>
