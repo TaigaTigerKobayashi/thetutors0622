@@ -46,6 +46,7 @@
     <button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
     <div class="link-area">
       <a class="password-forget" href="" style="display:block;">パスワードをお忘れですか？</a>
+      <a class="password-forget" href="contact.php" style="display:block;">お問い合わせはこちら</a>
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         会員登録
       </button>
