@@ -33,7 +33,10 @@
 
 <body class="text-center">
   <form class="form-signin" method="POST" action="login_act.php">
-    <h1 class="h3 mb-3 font-weight-normal">ログイン</h1>
+    <div>
+      <img src="logo.png" class="img-fluid" alt="ロゴ">
+    </div>
+    <h1 class="h3 m-2 mb-3 font-weight-normal">ログイン</h1>
     <label for="inputUserID" class="sr-only">ユーザーID</label>
     <input type="text" name="lid" id="inputUserID" class="form-control mb-3" placeholder="ユーザーID" required autofocus>
     <label for="inputPassword" class="sr-only">パスワード</label>
