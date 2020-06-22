@@ -7,6 +7,13 @@ $sql = "SELECT TUTOR,COUNT(TUTOR) AS COUNT FROM CALENDAR_TABLE GROUP BY TUTOR OR
 $stmt = $pdo->prepare($sql);
 $status = $stmt->execute();
 
+$res = $pdo->query($sql);
+//取得したデータを全てフェッチする
+$data = $res->fetchAll();
+//データを表示する
+
+
+
 //３．データ表示
 $view = "";
 if ($status == false) {
@@ -64,16 +71,30 @@ $php_json = json_encode($php_array);
   <canvas id="myBarChart"></canvas>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
 
-  <script>
+<script>
+// php内で値を渡せたら、下記修正
+var data_array = <?php echo json_encode($data); ?>;
+name_array = [];
+count_array = [];
+for(key in data_array){
+  name_array.push(data_array[key][0]);
+  count_array.push(data_array[key][1]);
+  // alert(data_array[key][0] + "さんの番号は、" + data_array[key][1] + "です。") ;
+}
+console.log("ログを出力");
+console.log(name_array);
+console.log(count_array);
+
+
   var ctx = document.getElementById("myBarChart");
   var myBarChart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['半田', '古謝', '山桝', ],
+      labels: name_array,
       datasets: [
         {
-          label: 'チューター回数',
-          data: [3,2,1],
+          label: 'チューターポイント',
+          data: count_array,
           backgroundColor: "rgba(219,39,91,0.5)"
         }
       ]
