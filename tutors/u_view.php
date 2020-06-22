@@ -55,9 +55,9 @@ $row = $stmt->fetch();
 <p><a class="btn btn-sm btn-primary" href="student_list.php">ユーザー一覧へ戻る</a></p>
 
 <!-- Main[Start] -->
-<h2 class="text-center container bg-success text-whitey">予約情報</h2>
+<h2 class="text-center container text-secondary">予約情報</h2>
 <form method="post" action="update.php">
-  <div class="jumbotron">
+  <div class="container p-3 mb-2 bg-success text-white">
    <fieldset>
      <label>日にち<input type="text" name="day" value="<?=$row["day"]?>"></label><br>
      <label>開始時間<input type="text" name="start" value="<?=$row["start"]?>"></label><br>
