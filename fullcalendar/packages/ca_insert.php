@@ -88,10 +88,51 @@ $status = $stmt -> execute();
 
 if ($status == false) {
     sql_error($stmt);
-} else {
-    //５．index.phpへリダイレクト
-    redirect("cal.php");
 }
 
 
 ?>
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+    html{
+        height:100%;
+    }
+
+    body{
+        height:100%;
+        margin:0;
+    }
+
+    .box{
+        height:60%;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+
+    p{
+        font-weight:bold;
+        padding:0;
+        margin:0;
+        font-size:20px;
+    }
+    </style>
+</head>
+<body>
+    <a href="cal.php"><button type="button" class="btn btn-info">reserve</button></a>
+    <a href="cal_tutor.php"><button type="button" class="btn btn-success">tutor</button></a>
+    <a href="../../tutors/logout.php"><button type="button" class="btn btn-primary">Logout</button></a>
+
+    <div class="box">
+        <p>予約が完了しました</p>
+    </div>
+</body>
+</html>
