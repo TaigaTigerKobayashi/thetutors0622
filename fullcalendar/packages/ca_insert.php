@@ -43,8 +43,8 @@ $status = $stmt -> execute();
 
     // ヘッダー情報を設定
     $header = "MIME-Version: 1.0\n";
-    $header .= "From: The Tutors <arusu.m3@gmail.com>\n";
-    $header .= "Reply-To: The Tutors <arusu.m3@gmail.com>\n";
+    $header .= "From: The Tutors <thetutors777@gmail.com>\n";
+    $header .= "Reply-To: The Tutors <thetutors777@gmail.com>\n";
 
     // 生徒側へ送るメールの件名
 
@@ -82,7 +82,7 @@ $status = $stmt -> execute();
         $auto_reply_text .= "＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\n\n";
 
         // 運営側へメール送信
-        mb_send_mail( 'arusu.m3@gmail.com', $admin_reply_subject, $admin_reply_text, $header);
+        mb_send_mail( 'thetutors777@gmail.com', $admin_reply_subject, $admin_reply_text, $header);
   
 }
 

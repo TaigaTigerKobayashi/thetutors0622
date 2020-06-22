@@ -94,7 +94,7 @@ $status = $stmt -> execute();
             <li><?= $_POST["text"]?></li>
           </div>
         </ul>
-        <input class="btn btn-success" type="submit" name="btn_submit" value="予約する">
+        <input class="btn btn-success" type="submit" name="add" value="予約する">
         <div class="form-group">
           <input type="hidden" name="day" class="form-control" id="exampleFormControlInput1" value="<?= $_POST["day"]?>">
         </div>
