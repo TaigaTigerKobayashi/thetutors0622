@@ -27,15 +27,55 @@ $status = $stmt -> execute();
   <link rel="stylesheet" href="core/main.css">
   <link href='daygrid/main.css' rel='stylesheet' />
   <link href='timegrid/main.css' rel='stylesheet' />
+  <style>
+    html{
+      height:100%;
+    }
+
+    body{
+      height:100%;
+    }
+
+
+    *{
+      box-sizing:border-box;
+    }
+    .fc-content{
+      cursor:pointer;
+    }
+
+    .modal-body{
+      padding:0;
+    }
+
+    label {
+      margin:0;
+      font-weight: bold;
+      width: 150px;
+    }
+
+    .list-group-item{
+      display:flex;
+      align-items:center;
+      padding:15px 5px;
+    }
+
+    .list-group-item li{
+      width:70%;
+      margin:  0;
+      text-align: left;
+      list-style:none;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="container">
+  <div class="container h-100">
   <a href="../../tutors/logout.php"><button type="button" class="btn btn-primary">Logout</button></a>
   <a href="cal.php"><button type="button" class="btn btn-info">reserve</button></a>
-    <div class="row">
+    <div class="row h-75 d-flex align-items-center">
       <div class="col"></div>
-      <div class="col-7">
+      <div class="col-7 ">
         <div id="calendar"></div>
       </div>
       <div class="col"></div>
@@ -53,24 +93,34 @@ $status = $stmt -> execute();
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="ca_insert.php" method="post">
+        <form>
           <div class="modal-body">
             <!-- ↓ここにモーダルの説明部分が表示される -->
             <!-- ID: <input type="text" id='txtId' name='txtId'><br> -->
-  
-            日付: <input type="text" id="txtDay" name="day"><br>
-            タイトル: <input type="text" id="txtTitle" name="textTitle"><br>
-            開始時間: <input type="text" id="txtTime" name="start" value="18:00"><br>
-            終了時間: <input type="text" name="end"><br>
-            詳細: <textarea id="txtDescription" name="text" rows="3"></textarea><br>
-            色: <input type="color" id="txtColor" name="color" value="#ff0000"><br>
-  
+            <ul class="list-group list-group-flush">
+              <div class="list-group-item">
+                <label class="text-center">言語</label>
+                <li id="txtTitle" class="m-auto"></li>
+              </div>
+
+              <div class="list-group-item">
+                <label class="text-center">開始時間</label>
+                <li id="start" class="m-auto"></li>
+              </div>
+
+              <div class="list-group-item">
+                <label class="text-center">終了時間</label>
+                <li id="end" class="m-auto"></li>
+              </div>
+
+              <div class="list-group-item">
+                <label class="text-center">質問内容</label>
+                <li id="txtDescription" class="m-auto"></li>
+              </div>
+            </ul> 
           </div>
           <div class="modal-footer">
-            <input type="submit" id="btnAdd" class="btn btn-success" value="入力内容を確認する">
-            <button type="button" class="btn btn-success">修正</button>
-            <button type="button" class="btn btn-danger">削除</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
+            <button type="button" class="btn btn-light" data-dismiss="modal">閉じる</button>
           </div>
         </form>
       </div>
@@ -85,11 +135,14 @@ $status = $stmt -> execute();
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js" type="text/javascript"></script>
   <script src='core/main.js'></script>
   <script src='daygrid/main.js'></script>
   <script src='interaction/main.js'></script>
   <script src='timegrid/main.js'></script>
+  <script src="list/main.js"></script>
   <script src="core/locales-all.js"></script>
+  <script src="bootstrap/main.js"></script>
 
 
 
@@ -104,6 +157,7 @@ $status = $stmt -> execute();
           center: 'title',
           right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
+        timeZone: 'Asia/Tokyo',
         locale: 'ja', //日本語選択
         businessHours: true, //土日を色付け
         eventTimeFormat: {
@@ -116,13 +170,13 @@ $status = $stmt -> execute();
         selectMirror: true, //クリック関係（詳細不明）
 
         //日付をクリックした時の記述
-        dateClick: function (info) {
-          // alert('Date: ' + info.dateStr);
-          $('#txtDay').val(info.dateStr);
-          $('#exampleModal').modal();
+        // dateClick: function (info) {
+        //   // alert('Date: ' + info.dateStr);
+        //   $('#txtDay').val(info.dateStr);
+        //   $('#exampleModal').modal();
 
 
-        },
+        // },
 
 
 
@@ -133,7 +187,7 @@ $status = $stmt -> execute();
         <?php while($r = $stmt -> fetch(PDO::FETCH_ASSOC)){ ?>
           {
             title: '<?= $r["title"]?>',
-            descripcion: '<?= $r["text"]?>',
+            descripcion: '<?=  preg_replace('/[\x00-\x1F\x7F]/','',$r["text"])?>',
             start: '<?= $r["day"].'T'.$r["start"] ?>',
             end: '<?= $r["day"].'T'.$r["end"] ?>',
             //ここに記述すると個別に色を設定可能
@@ -162,9 +216,11 @@ $status = $stmt -> execute();
 
         //イベントバーにクリックした時の記述
         eventClick: function (info) {
-          alert('Event: ' + info.event.title);
-
-
+          $('#txtTitle').text(info.event.title);
+          $('#start').text(moment.utc(info.event.start).format("HH:mm"));
+          $('#end').text(moment.utc(info.event.end).format("HH:mm"));
+          $('#txtDescription').text(info.event.extendedProps.descripcion);
+          $('#exampleModal').modal();
 
         }
 

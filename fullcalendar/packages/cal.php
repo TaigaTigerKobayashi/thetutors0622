@@ -38,26 +38,46 @@ $status = $stmt -> execute();
   <link href='timegrid/main.css' rel='stylesheet' />
 
   <style>
+    html{
+      height:100%;
+    }
+
+    body{
+      height:100%;
+    }
+
+    .fc-content{
+      cursor:pointer;
+    }
+
+    .modal-body{
+      padding:0;
+    }
+
     label {
-      display: inline-block;
-      margin-bottom: 10px;
+      margin:0;
       font-weight: bold;
       width: 150px;
     }
 
     .list-group-item{
-      display:inline-block;
+      display:flex;
+      align-items:center;
+      padding:15px 5px;
     }
 
     .list-group-item li{
-      display: inline-block;
+      width:70%;
       margin:  0;
       text-align: left;
+      list-style:none;
     }
 
     #exampleFormControlTextarea1{
       display:none!important;
     }
+
+    
 
   </style>
 </head>
@@ -123,13 +143,12 @@ $status = $stmt -> execute();
   
       </form>
     </div>
-  <?php elseif($page_flg === 2):?>
     
   <?php else: ?>
-  <div class="container">
+  <div class="container h-100">
     <a href="../../tutors/logout.php"><button type="button" class="btn btn-primary">Logout</button></a>
     <a href="cal_tutor.php"><button type="button" class="btn btn-success">tutor</button></a>
-    <div class="row">
+    <div class="row h-75 d-flex align-items-center">
       <div class="col"></div>
       <div class="col-7">
         <div id="calendar"></div>
@@ -138,7 +157,7 @@ $status = $stmt -> execute();
     </div>
   </div>
 
-  <!-- モーダル -->
+  <!-- 予約モーダル -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
@@ -152,23 +171,16 @@ $status = $stmt -> execute();
         <form action="" method="post" class="container">
           <div class="modal-body">
             <!-- ↓ここにモーダルの説明部分が表示される -->
-            <!-- ID: <input type="text" id='txtId' name='txtId'><br> -->
-
-            <!-- 日付: <input type="text" id="txtDay" name="day"><br>
-            タイトル: <input type="text" id="txtTitle" name="textTitle"><br>
-            開始時間: <input type="text" id="start" name="start" value="18:00"><br>
-            終了時間: <input type="text" id="end" name="end"><br>
-            詳細: <textarea id="txtDescription" name="text" rows="3"></textarea><br>
-            色: <input type="color" id="txtColor" name="color" value="#ff0000"><br> -->
-
               <div class="form-group">
                 <label for="txtDay">日付</label>
                 <input type="text" class="form-control" id="txtDay" name="day">
               </div>
+
               <div class="form-group">
                 <label for="txtTitle">言語</label>
                 <input type="text" class="form-control" id="txtTitle" name="textTitle">
               </div>
+
               <div class="form-group">
                 <label for="start">開始時間</label>
                 <select class="form-control" id="start" name="start">
@@ -179,6 +191,7 @@ $status = $stmt -> execute();
                   <option>22:00</option>
                 </select>
               </div>
+
               <div class="form-group">
                 <label for="end">終了時間</label>
                 <select class="form-control" id="end" name="end">
@@ -188,6 +201,7 @@ $status = $stmt -> execute();
                   <option>22:00</option>
                 </select>
               </div>
+
               <div class="form-group">
                 <label for="text">詳細</label>
                 <textarea class="form-control" id="text" rows="3" name="text"></textarea>
@@ -197,7 +211,6 @@ $status = $stmt -> execute();
                 <label for="txtTitle">色</label>
                 <input type="color" class="form-control" id="color" name="color">
               </div>
-
           </div>
           <div class="modal-footer">
             <input type="submit" id="btnAdd" class="btn btn-success" name="add" value="入力内容を確認する">
@@ -207,21 +220,68 @@ $status = $stmt -> execute();
       </div>
     </div>
   </div>
-  <!-- モーダルここまで -->
+  <!-- 予約モーダルここまで -->
   <?php endif; ?>
+  <!-- 生徒予約確認モーダル -->
+  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form>
+          <div class="modal-body">
+            <!-- ↓ここにモーダルの説明部分が表示される -->
+            <!-- ID: <input type="text" id='txtId' name='txtId'><br> -->
+            <ul class="list-group list-group-flush">
+              <div class="list-group-item">
+                <label class="text-center">言語</label>
+                <li id="txtTitle1" class="m-auto"></li>
+              </div>
+
+              <div class="list-group-item">
+                <label class="text-center">開始時間</label>
+                <li id="start1" class="m-auto"></li>
+              </div>
+
+              <div class="list-group-item">
+                <label class="text-center">終了時間</label>
+                <li id="end1" class="m-auto"></li>
+              </div>
+
+              <div class="list-group-item">
+                <label class="text-center">質問内容</label>
+                <li id="txtDescription" class="m-auto"></li>
+              </div>
+            </ul> 
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light" data-dismiss="modal">閉じる</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- 生徒予約確認モーダルここまで -->
 
 
 
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js" type="text/javascript"></script>
   <script src='core/main.js'></script>
   <script src='daygrid/main.js'></script>
   <script src='interaction/main.js'></script>
   <script src='timegrid/main.js'></script>
+  <script src="list/main.js"></script>
   <script src="core/locales-all.js"></script>
+  <script src="bootstrap/main.js"></script>
 
 
 
@@ -246,18 +306,12 @@ $status = $stmt -> execute();
         // navLinks: true, // can click day/week names to navigate views
         selectable: true, //日付のクリックを可能に
         selectMirror: true, //クリック関係（詳細不明）
-
         //日付をクリックした時の記述
         dateClick: function (info) {
           // alert('Date: ' + info.dateStr);
           $('#txtDay').val(info.dateStr);
           $('#exampleModal').modal();
-
-
         },
-
-
-
 
         events: [ //ここに記入してイベントを作る
 
@@ -268,13 +322,13 @@ $status = $stmt -> execute();
           <?php while($r = $stmt -> fetch(PDO::FETCH_ASSOC)){?>
           {
             title: '<?= $r["title"]?>',
-            descripcion: '<?= $r["text"]?>',
+            descripcion: '<?= preg_replace('/[\x00-\x1F\x7F]/','',$r["text"])?>',
             start: '<?= $r["day"].'T'.$r["start"] ?>',
             end: '<?= $r["day"].'T'.$r["end"] ?>',
             //ここに記述すると個別に色を設定可能
             color: '<?= $r["color"]?>',
             textColor: 'gray'
-            }, <?php } ?>
+          }, <?php } ?>
           <?php endif;?>
 
 
@@ -297,10 +351,11 @@ $status = $stmt -> execute();
 
         //イベントバーにクリックした時の記述
         eventClick: function (info) {
-          alert('Event: ' + info.event.title);
-
-
-
+          $('#txtTitle1').text(info.event.title);
+          $('#start1').text(moment(info.event.start).format("HH:mm"));
+          $('#end1').text(moment(info.event.end).format("HH:mm"));
+          $('#txtDescription').text(info.event.extendedProps.descripcion);
+          $('#exampleModal1').modal();
         }
 
 
