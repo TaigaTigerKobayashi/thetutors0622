@@ -178,7 +178,21 @@ $status = $stmt -> execute();
 
               <div class="form-group">
                 <label for="txtTitle">言語</label>
-                <input type="text" class="form-control" id="txtTitle" name="textTitle">
+                <select class="form-control" id="start" name="start">
+                  <option>HTML/CSS</option>
+                  <option>Javascipt</option>
+                  <option>PHP</option>
+                  <option>データベース</option>
+                  <option>Ruby</option>
+                  <option>Unity</option>
+                  <option>UNIX</option>
+                  <option>エディタ/開発/環境構築プラットフォーム</option>
+                  <option>サーバー環境を作る</option>
+                  <option>Google提供ツール</option>
+                  <option>iPhone/Anroid</option>
+                  <option>デザイン/アート</option>
+                  <option>その他の言語</option>
+                </select>
               </div>
 
               <div class="form-group">
