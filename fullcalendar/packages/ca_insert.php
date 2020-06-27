@@ -13,6 +13,7 @@ $id = $_SESSION["id"];
 // 以下追加
 $name = $_SESSION["lid"];
 $email = $_SESSION["email"];
+$fb = $_SESSION["fb"];
 
 
 $pdo = db_conn();
@@ -79,6 +80,7 @@ $status = $stmt -> execute();
         $admin_reply_text .= "詳細：" . $text . "\n";
         $admin_reply_text .= "氏名：" . $name . "\n";
         $admin_reply_text .= "メールアドレス：" . $email . "\n";
+	$admin_reply_text .= "fb：" . $fb . "\n";
         $auto_reply_text .= "＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\n\n";
 
         // 運営側へメール送信
