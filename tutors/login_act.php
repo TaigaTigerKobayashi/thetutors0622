@@ -44,6 +44,7 @@ if( $val['user_id'] !=""){ //３で抽出した１レコードにidが含まれ�
   $_SESSION["user_type"] = $val['user_type'];
   $_SESSION["lid"]      = $val['lid'];
   $_SESSION["email"]      = $val['email'];
+  $_SESSION["fb"]      = $val['fb'];
   $_SESSION["id"]      = $val['user_id'];
  //Login処理OKの場合select.phpへ遷移
   if ($_SESSION["user_type"] == 1){
