@@ -94,6 +94,7 @@ $pdo = db_conn();
         $student_reply_text .= "＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\n";
         $student_reply_text .= "マッチング成立日時：" . date("Y-m-d H:i") . "\n";
         $student_reply_text .= "講師名：" . $tutor_name . "\n";
+        $student_reply_text .= "fb：" . $result_tutor_mail["fb"] . "\n";
         $student_reply_text .= "質問の希望日程：" . $day ." | ". $start . "～". $end. "\n";
         $student_reply_text .= "質問タイトル：" . $title . "\n";
         $student_reply_text .= "質問内容：" . $text . "\n";
@@ -116,6 +117,7 @@ $pdo = db_conn();
         $tutor_reply_text .= "＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\n";
         $tutor_reply_text .= "マッチング成立日時：" . date("Y-m-d H:i") . "\n";
         $tutor_reply_text .= "生徒名：" . $student_name . "\n";
+      　$tutor_reply_text .= "fb：" . $result_student_mail["fb"] . "\n";
         $tutor_reply_text .= "質問の希望日程：" . $day ." | ". $start . "～". $end. "\n";
         $tutor_reply_text .= "質問タイトル：" . $title . "\n";
         $tutor_reply_text .= "質問内容：" . $text . "\n";
@@ -135,8 +137,10 @@ $pdo = db_conn();
         $admin_reply_text .= "マッチング成立時刻：" . date("Y-m-d H:i") . "\n";
         $admin_reply_text .= "生徒名：" . $student_name . "\n";
         $admin_reply_text .= "生徒メールアドレス：" . $result_student_mail["email"] . "\n";
+        $admin_reply_text .= "生徒fb：" . $result_student_mail["fb"] . "\n";
         $admin_reply_text .= "講師名：" . $tutor_name . "\n";
         $admin_reply_text .= "講師メールアドレス：" . $result_tutor_mail["email"] . "\n";
+        $admin_reply_text .= "講師fb：" . $result_tutor_mail["fb"] . "\n";
         $admin_reply_text .= "質問の希望日程：" . $day ." | ". $start . "～". $end. "\n";
         $admin_reply_text .= "タイトル：" . $title . "\n";
         $admin_reply_text .= "詳細：" . $text . "\n";
@@ -144,7 +148,7 @@ $pdo = db_conn();
         
 
         // 運営側へメール送信
-        mb_send_mail( 'arusu.m3@gmail.com', $admin_reply_subject, $admin_reply_text, $header);
+        mb_send_mail( 'thetutors777@gmail.com', $admin_reply_subject, $admin_reply_text, $header);
 
 
         // $fromEmail = "arusu.m3@gmail.com";
