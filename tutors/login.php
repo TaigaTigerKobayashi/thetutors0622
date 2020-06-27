@@ -80,6 +80,8 @@
             <label for="inputEmail" class="sr-only">Email address</label>
             <input type="text" name="email" class="form-control mb-3" placeholder="Email address" required>
             <label for="inputPassword" class="sr-only">Password</label>
+            <input type="text" name="fb" class="form-control mb-3" placeholder="facebook URL" required>
+            <label for="URL" class="sr-only">facebook URL</label>
             <input type="password" name="lpw" class="form-control mb-3" placeholder="Password" required>
             <button class="btn btn-lg btn-primary btn-block" type="submit">登録する</button>
 
