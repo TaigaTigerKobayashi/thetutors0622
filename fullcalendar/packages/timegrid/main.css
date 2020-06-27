@@ -307,3 +307,7 @@ be a descendant of the grid when it is being dragged.
   border-top-color: transparent;
   border-bottom-color: transparent;
 }
+
+.fc-sat { color: blue; }
+.fc-sun { color: red; background-color: gray; }  /* 日曜日 */
+
