@@ -133,8 +133,8 @@ if ($status == false) {
     <a href="cal_tutor.php"><button type="button" class="btn btn-success">tutor</button></a>
     <a href="../../tutors/logout.php"><button type="button" class="btn btn-primary">Logout</button></a>
 
-    <div class="box">
-        <p>予約が完了しました</p>
-    </div>
+    <p>予約が完了しました。</p>
+    <p>マッチング完了メールが迷惑メールに入ってしまう場合があります。</p>
+    <p>この後、予約確認メールが届きますので、迷惑メールに入っていないかご確認お願いします。</p>
 </body>
 </html>
