@@ -6,7 +6,7 @@ include("funcs.php");
 
 $day = $_POST["day"];
 $start = $_POST["start"];
-$end = $_POST["end"];
+// $end = $_POST["end"];
 $student_name = $_POST["STUDENT"];
 $tutor_name = $_POST["TUTOR"];
 $title = $_POST["title"];
@@ -95,7 +95,7 @@ $pdo = db_conn();
         $student_reply_text .= "マッチング成立日時：" . date("Y-m-d H:i") . "\n";
         $student_reply_text .= "講師名：" . $tutor_name . "\n";
         $student_reply_text .= "fb：" . $result_tutor_mail["fb"] . "\n";
-        $student_reply_text .= "質問の希望日程：" . $day ." | ". $start . "～". $end. "\n";
+        $student_reply_text .= "質問の希望日程：" . $day ." | ". $start . "\n";
         $student_reply_text .= "質問タイトル：" . $title . "\n";
         $student_reply_text .= "質問内容：" . $text . "\n";
         $student_reply_text .= "＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\n\n";
@@ -111,6 +111,7 @@ $pdo = db_conn();
         //件名の設定
         $tutor_reply_subject = '【The Tutors】マッチングが成立しました。　マッチング成立日時：' . date("Y-m-d H:i") ."講師名：" . $student_name;
 
+
         // 本文を設定
         $tutor_reply_text = $tutor_name . "様\n\n";
         $tutor_reply_text .= "下記の内容でマッチングが成立しましたので、ご連絡いたします。\n\n";
@@ -118,7 +119,7 @@ $pdo = db_conn();
         $tutor_reply_text .= "マッチング成立日時：" . date("Y-m-d H:i") . "\n";
         $tutor_reply_text .= "生徒名：" . $student_name . "\n";
         $tutor_reply_text .= "fb：" . $result_student_mail["fb"] . "\n";
-        $tutor_reply_text .= "質問の希望日程：" . $day ." | ". $start . "～". $end. "\n";
+        $tutor_reply_text .= "質問の希望日程：" . $day ." | ". $start . "\n";
         $tutor_reply_text .= "質問タイトル：" . $title . "\n";
         $tutor_reply_text .= "質問内容：" . $text . "\n";
         $tutor_reply_text .= "＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\n\n";
