@@ -175,7 +175,7 @@ $status = $stmt -> execute();
             <!-- ↓ここにモーダルの説明部分が表示される -->
               <div class="form-group">
                 <label for="txtDay">日付</label>
-                <input type="text" class="form-control" id="txtDay" name="day">
+                <input type="text" class="form-control" id="txtDay" name="day" required>
               </div>
 
               <div class="form-group">
@@ -221,7 +221,7 @@ $status = $stmt -> execute();
 
               <div class="form-group">
                 <label for="text">詳細</label>
-                <textarea class="form-control" id="text" rows="3" name="text"></textarea>
+                <textarea class="form-control" id="text" rows="3" name="text" required></textarea>
               </div>
 
               <div class="form-group">
