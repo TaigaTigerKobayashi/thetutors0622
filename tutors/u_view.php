@@ -61,7 +61,7 @@ $row = $stmt->fetch();
    <fieldset>
      <label>日にち<input type="text" name="day" value="<?=$row["day"]?>"></label><br>
      <label>開始時間<input type="text" name="start" value="<?=$row["start"]?>"></label><br>
-     <label>終了時間<input type="text" name="end" value="<?=$row["end"]?>"></label><br>
+     <!-- <label>終了時間<input type="text" name="end" value="<?=$row["end"]?>"></label><br> -->
      <label>受講生徒<input type="text" name="STUDENT" value="<?=$row["STUDENT"]?>"></label><br>
      <label>担当講師<input type="text" name="TUTOR" value="<?=$row["TUTOR"]?>"></label><br>
      <label>予約言語<input type="text" name="title" value="<?=$row["title"]?>"></label><br>
