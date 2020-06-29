@@ -44,8 +44,8 @@ $pdo = db_conn();
 
     // ヘッダー情報を設定
     $header = "MIME-Version: 1.0\n";
-    $header .= "From: The Tutors <arusu.m3@gmail.com>\n";
-    $header .= "Reply-To: The Tutors <arusu.m3@gmail.com>\n";
+    $header .= "From: The Tutors <thetutors777@gmail.com>\n";
+    $header .= "Reply-To: The Tutors <thetutors777@gmail.com>\n";
 
 
     //生徒メールアドレスを抽出するためのSQL
