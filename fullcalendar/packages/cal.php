@@ -201,11 +201,6 @@ $status = $stmt -> execute();
               <div class="form-group">
                 <label for="start">開始時間</label>
                 <select class="form-control" id="start" name="start">
-                  <option>18:00</option>
-                  <option>19:00</option>
-                  <option>20:00</option>
-                  <option>21:00</option>
-                  <option>22:00</option>
                 </select>
               </div>
 
@@ -325,10 +320,40 @@ $status = $stmt -> execute();
         //日付をクリックした時の記述
         
         dateClick: function (info) {
-          // alert('Date: ' + info.dateStr);
-          $('#txtDay').val(info.dateStr);
-          $('#exampleModal').modal();
+          // alert('Date: ' + info.dateStr)
+          if(info.date >= (Date.now() - 60*1000*60*24)){
+            // クラスがfc-sunだったら表示しないとする
+            // else
+            $('#txtDay').val(info.dateStr);
+            $('#exampleModal').modal();
+            var start = info.date;  
+            
+            start.setHours(15,0,0,0);
+            $('#start').empty();
+            if (new Date() < start) {
+                $('#start').append( $("<option>").html("18:00") );
+              }
+            start.setHours(16,0,0,0);
+            if (new Date() < start) {
+                $('#start').append( $("<option>").html("19:00") );
+            }
+            start.setHours(17,0,0,0);
+            if (new Date() < start) {
+                $('#start').append( $("<option>").html("20:00") );
+            }
+            start.setHours(18,0,0,0);
+            if (new Date() < start) {
+                $('#start').append( $("<option>").html("21:00") );
+            }
+            start.setHours(19,0,0,0);
+            if (new Date() < start) {
+                $('#start').append( $("<option>").html("22:00") );
+            }
+
+                    }
+                    
         },
+
         
 
 
