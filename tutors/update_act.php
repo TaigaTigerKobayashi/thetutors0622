@@ -86,7 +86,7 @@ $pdo = db_conn();
         
 
         //件名の設定
-        $student_reply_subject = '【The Tutors】マッチングが成立しました。マッチング成立日時：' . date("Y-m-d H:i") ."講師名：" . $tutor_name;
+        $student_reply_subject = '【The Tutors】マッチングが成立しました。質問の希望日程：' . $day ." | ". $start ."講師名：" . $tutor_name;
 
         // 本文を設定
         $student_reply_text = $student_name . "様\n\n";
@@ -109,7 +109,7 @@ $pdo = db_conn();
     //講師へのメール送信    
         
         //件名の設定
-        $tutor_reply_subject = '【The Tutors】マッチングが成立しました。　マッチング成立日時：' . date("Y-m-d H:i") ."講師名：" . $student_name;
+        $tutor_reply_subject = '【The Tutors】マッチングが成立しました。　質問の希望日程：' . $day ." | ". $start ."講師名：" . $student_name;
 
 
         // 本文を設定
