@@ -108,10 +108,10 @@ $status = $stmt -> execute();
                 <li id="start" class="m-auto"></li>
               </div>
 
-              <div class="list-group-item">
+              <!-- <div class="list-group-item">
                 <label class="text-center">終了時間</label>
                 <li id="end" class="m-auto"></li>
-              </div>
+              </div> -->
 
               <div class="list-group-item">
                 <label class="text-center">質問内容</label>
@@ -189,7 +189,7 @@ $status = $stmt -> execute();
             title: '<?= $r["title"]?>',
             descripcion: '<?=  preg_replace('/[\x00-\x1F\x7F]/','',$r["text"])?>',
             start: '<?= $r["day"].'T'.$r["start"] ?>',
-            end: '<?= $r["day"].'T'.$r["end"] ?>',
+            // end:
             //ここに記述すると個別に色を設定可能
             color: '<?= $r["color"]?>',
             textColor: 'gray'
@@ -218,7 +218,7 @@ $status = $stmt -> execute();
         eventClick: function (info) {
           $('#txtTitle').text(info.event.title);
           $('#start').text(moment.utc(info.event.start).format("HH:mm"));
-          $('#end').text(moment.utc(info.event.end).format("HH:mm"));
+          // $('#end').text(moment.utc(info.event.end).format("HH:mm"));
           $('#txtDescription').text(info.event.extendedProps.descripcion);
           $('#exampleModal').modal();
 
