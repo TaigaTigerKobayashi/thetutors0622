@@ -121,7 +121,7 @@ $status = $stmt -> execute();
         </div>
 
         <div class="form-group">
-          <input type="hidden" name="textTitle" class="form-control" id="exampleFormControlInput2" value="<?= $_POST["textTitle"]?>">
+          <input type="hidden" name="txtTitle" class="form-control" id="exampleFormControlInput2" value="<?= $_POST["txtTitle"]?>">
         </div>
 
         <div class="form-group">
@@ -255,6 +255,11 @@ $status = $stmt -> execute();
             <!-- ID: <input type="text" id='txtId' name='txtId'><br> -->
             <ul class="list-group list-group-flush">
               <div class="list-group-item">
+                <label class="text-center">講師</label>
+                <li id="tutor_name" class="m-auto"></li>
+              </div>
+
+              <div class="list-group-item">
                 <label class="text-center">言語</label>
                 <li id="txtTitle1" class="m-auto"></li>
               </div>
@@ -263,11 +268,6 @@ $status = $stmt -> execute();
                 <label class="text-center">開始時間</label>
                 <li id="start1" class="m-auto"></li>
               </div>
-
-              <!-- <div class="list-group-item">
-                <label class="text-center">終了時間</label>
-                <li id="end1" class="m-auto"></li>
-              </div> -->
 
               <div class="list-group-item">
                 <label class="text-center">質問内容</label>
@@ -340,6 +340,7 @@ $status = $stmt -> execute();
           <?php else:?>
           <?php while($r = $stmt -> fetch(PDO::FETCH_ASSOC)){?>
           {
+            name:'<?=$r["TUTOR"]?>',
             title: '<?= $r["title"]?>',
             descripcion: '<?= preg_replace('/[\x00-\x1F\x7F]/','',$r["text"])?>',
             start: '<?= $r["day"].'T'.$r["start"] ?>',
@@ -370,6 +371,7 @@ $status = $stmt -> execute();
 
         //イベントバーにクリックした時の記述
         eventClick: function (info) {
+          $('#tutor_name').text(info.event.extendedProps.name + 'さん');
           $('#txtTitle1').text(info.event.title);
           $('#start1').text(moment(info.event.start).format("HH:mm"));
           // $('#end1').text(moment(info.event.end).format("HH:mm"));

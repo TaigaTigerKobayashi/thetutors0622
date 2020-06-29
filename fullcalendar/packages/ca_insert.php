@@ -4,7 +4,7 @@ session_start();
 include("../../tutors/funcs.php");
 
 $day = $_POST["day"];
-$title = $_POST["textTitle"];
+$title = $_POST["txtTitle"];
 $start = $_POST["start"];
 // $end = $_POST["end"];
 $text = $_POST["text"];
@@ -18,7 +18,7 @@ $fb = $_SESSION["fb"];
 
 $pdo = db_conn();
 
-$sql = "INSERT INTO calendar_table(STUDENT,title,text,color,day,start)VALUES(:lid,:title,:text,:color,:day,:start)";
+$sql = "INSERT INTO calendar_table(STUDENT,TUTOR,title,text,color,day,start)VALUES(:lid,'未決定',:title,:text,:color,:day,:start)";
 $stmt = $pdo-> prepare($sql);
 $stmt -> bindValue(':lid',$_SESSION["lid"],PDO::PARAM_STR);
 $stmt -> bindValue(':title',$title,PDO::PARAM_STR);
@@ -132,9 +132,9 @@ if ($status == false) {
     <a href="cal.php"><button type="button" class="btn btn-info">reserve</button></a>
     <a href="cal_tutor.php"><button type="button" class="btn btn-success">tutor</button></a>
     <a href="../../tutors/logout.php"><button type="button" class="btn btn-primary">Logout</button></a>
-    <p>予約が完了しました。</p>
-    <p>マッチング完了メールが迷惑メールに入ってしまう場合があります。</p>
-    <p>この後、予約確認メールが届きますので、迷惑メールに入っていないかご確認お願いします。</p>
 
+    <div class="box">
+        <p>予約が完了しました</p>
+    </div>
 </body>
 </html>
