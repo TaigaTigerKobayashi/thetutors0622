@@ -23,7 +23,7 @@ if ($status == false) {
          //更新用リンクを埋め込んだ表示コード(元のselect.phpから修正する箇所)
   $view .='<p>';
   // $view .='<a href="u_view.php? id='.$r["id"].'">';
-  $view .=$r["day"]."&nbsp;/&nbsp;".$r["start"]."~".$r["end"].'<br>';
+  $view .=$r["day"]."&nbsp;/&nbsp;".$r["start"].'<br>';
   $view .='言語 : 「'.$r["title"]."」 概要:".$r["text"].'<br>';
   $view .='<a href="student_history.php? STUDENT='.$r["STUDENT"].'">'.'生徒'.'</a> : '.$r["STUDENT"].' / '.'<a href="student_history.php? TUTOR='.$r["TUTOR"].'">'.'講師'.'</a> : '.$r["TUTOR"].'<br>';
 
