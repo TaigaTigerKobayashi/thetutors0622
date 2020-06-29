@@ -86,6 +86,7 @@ $status = $stmt -> execute();
   <a href="../../tutors/point.php">ポイント確認画面</a>
   <?php if($page_flg === 1):?>
     <div class="container w-50">
+
     
       <form method="post" action="ca_insert.php">
         <ul class="list-group list-group-flush">
@@ -96,7 +97,7 @@ $status = $stmt -> execute();
 
           <div class="list-group-item pt-3 pb-3">
             <label>質問タイトル</label>
-            <li><?= $_POST["textTitle"]?></li>
+            <li><?= $_POST["txtTitle"]?></li>
           </div>
 
           <div class="list-group-item pt-3 pb-3">
@@ -104,10 +105,10 @@ $status = $stmt -> execute();
             <li><?= $_POST["start"]?></li>
           </div>
 
-          <div class="list-group-item pt-3 pb-3">
+          <!-- <div class="list-group-item pt-3 pb-3">
             <label>終了時間</label>
-            <li><?= $_POST["end"]?></li>
-          </div>
+            <li></li>
+          </div> -->
 
           <div class="list-group-item pt-3 pb-3">
             <label>質問内容</label>
@@ -127,10 +128,10 @@ $status = $stmt -> execute();
           
           <input type="hidden" name="start" class="form-control" id="exampleFormControlInput3" value="<?= $_POST["start"]?>">
         </div>
-
+<!-- 
         <div class="form-group">
           <input type="hidden" name="end" class="form-control" id="exampleFormControlInput4" value="<?= $_POST["end"]?>">
-        </div>
+        </div> -->
 
         <div class="form-group">
           <textarea type="hidden" name="text" class="form-control" id="exampleFormControlTextarea1" rows="3"><?= $_POST["text"]?></textarea>
@@ -143,6 +144,7 @@ $status = $stmt -> execute();
   
       </form>
     </div>
+
     
   <?php else: ?>
   <div class="container h-100">
@@ -178,7 +180,7 @@ $status = $stmt -> execute();
 
               <div class="form-group">
                 <label for="txtTitle">言語</label>
-                <select class="form-control" id="start" name="start">
+                <select class="form-control" id="txtTitle" name="txtTitle">
                   <option>HTML/CSS</option>
                   <option>Javascipt</option>
                   <option>PHP</option>
@@ -193,6 +195,7 @@ $status = $stmt -> execute();
                   <option>デザイン/アート</option>
                   <option>その他の言語</option>
                 </select>
+                <!-- <input type="text" class="form-control" id="txtTitle" name="textTitle"> -->
               </div>
 
               <div class="form-group">
@@ -206,7 +209,7 @@ $status = $stmt -> execute();
                 </select>
               </div>
 
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="end">終了時間</label>
                 <select class="form-control" id="end" name="end">
                   <option>19:00</option>
@@ -214,7 +217,7 @@ $status = $stmt -> execute();
                   <option>21:00</option>
                   <option>22:00</option>
                 </select>
-              </div>
+              </div> -->
 
               <div class="form-group">
                 <label for="text">詳細</label>
@@ -261,10 +264,10 @@ $status = $stmt -> execute();
                 <li id="start1" class="m-auto"></li>
               </div>
 
-              <div class="list-group-item">
+              <!-- <div class="list-group-item">
                 <label class="text-center">終了時間</label>
                 <li id="end1" class="m-auto"></li>
-              </div>
+              </div> -->
 
               <div class="list-group-item">
                 <label class="text-center">質問内容</label>
@@ -302,7 +305,6 @@ $status = $stmt -> execute();
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var calendarEl = document.getElementById('calendar');
-
       var calendar = new FullCalendar.Calendar(calendarEl, {
         plugins: ['interaction', 'dayGrid', 'timeGrid'],
         header: { //ヘッダー選択
@@ -311,7 +313,7 @@ $status = $stmt -> execute();
           right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
         locale: 'ja', //日本語選択
-        businessHours: true, //土日を色付け
+        businessHours: false, //土日を色付け
         eventTimeFormat: {
           hour: 'numeric',
           minute: '2-digit'
@@ -321,11 +323,14 @@ $status = $stmt -> execute();
         selectable: true, //日付のクリックを可能に
         selectMirror: true, //クリック関係（詳細不明）
         //日付をクリックした時の記述
+        
         dateClick: function (info) {
           // alert('Date: ' + info.dateStr);
           $('#txtDay').val(info.dateStr);
           $('#exampleModal').modal();
         },
+        
+
 
         events: [ //ここに記入してイベントを作る
 
@@ -338,7 +343,7 @@ $status = $stmt -> execute();
             title: '<?= $r["title"]?>',
             descripcion: '<?= preg_replace('/[\x00-\x1F\x7F]/','',$r["text"])?>',
             start: '<?= $r["day"].'T'.$r["start"] ?>',
-            end: '<?= $r["day"].'T'.$r["end"] ?>',
+            // end: ,
             //ここに記述すると個別に色を設定可能
             color: '<?= $r["color"]?>',
             textColor: 'gray'
@@ -367,7 +372,7 @@ $status = $stmt -> execute();
         eventClick: function (info) {
           $('#txtTitle1').text(info.event.title);
           $('#start1').text(moment(info.event.start).format("HH:mm"));
-          $('#end1').text(moment(info.event.end).format("HH:mm"));
+          // $('#end1').text(moment(info.event.end).format("HH:mm"));
           $('#txtDescription').text(info.event.extendedProps.descripcion);
           $('#exampleModal1').modal();
         }
