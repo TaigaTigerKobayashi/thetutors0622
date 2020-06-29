@@ -11,7 +11,7 @@ $title = $_POST['title'];
 $text = $_POST['text'];
 $day = $_POST['day'];
 $start = $_POST['start'];
-$end = $_POST['end'];
+// $end = $_POST['end'];
 
 
 
@@ -24,7 +24,7 @@ $pdo = db_conn();
 //３．データ登録SQL作成
 //3-1: sql作る処理(追記部分)
 //更新の基本の書き方：UPDATE テーブル名 SET 変更データ WHERE 選択データ;
-$sql = 'UPDATE calendar_table SET STUDENT=:STUDENT,TUTOR=:TUTOR,title=:title,text=:text,day=:day,start=:start,end=:end WHERE id=:id';
+$sql = 'UPDATE calendar_table SET STUDENT=:STUDENT,TUTOR=:TUTOR,title=:title,text=:text,day=:day,start=:start WHERE id=:id';
 //prepare("")の中にはmysqlのSQLで入力したINSERT文を入れて修正すれば良いイメージ
 
 //3-2: sql文をstmtに渡す処理
@@ -37,7 +37,7 @@ $stmt->bindValue(':title',    $title,    PDO::PARAM_STR);  //Integer（数値の
 $stmt->bindValue(':text', $text, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
 $stmt->bindValue(':day', $day, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
 $stmt->bindValue(':start', $start, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
-$stmt->bindValue(':end', $end, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
+// $stmt->bindValue(':end', $end, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
 $stmt->bindValue(':id',     $id,     PDO::PARAM_INT);  //Integer（数値の場合 PDO::PARAM_INT)
 
 //3-4: 最後に実行する
