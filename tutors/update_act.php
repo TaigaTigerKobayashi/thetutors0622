@@ -98,6 +98,7 @@ $pdo = db_conn();
         $student_reply_text .= "質問の希望日程：" . $day ." | ". $start . "\n";
         $student_reply_text .= "質問タイトル：" . $title . "\n";
         $student_reply_text .= "質問内容：" . $text . "\n";
+        $student_reply_text .= "終了後のアンケートリンク：https://docs.google.com/forms/d/e/1FAIpQLScFyTTd33fpkZuWBb2NwPgiDBEgDD_jBLgKESDCtf1OLo-gVQ/viewform" . "\n";
         $student_reply_text .= "＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\n\n";
         $student_reply_text .= "The Tutors 事務局";
 
@@ -122,6 +123,7 @@ $pdo = db_conn();
         $tutor_reply_text .= "質問の希望日程：" . $day ." | ". $start . "\n";
         $tutor_reply_text .= "質問タイトル：" . $title . "\n";
         $tutor_reply_text .= "質問内容：" . $text . "\n";
+        $student_reply_text .= "終了後のアンケートリンク：https://docs.google.com/forms/d/e/1FAIpQLScXWQNsk9gHrLwHwfbR9uvd5WK_WBDbWppfzNNx3TdR5gkWCQ/viewform?usp=sf_link" . "\n";
         $tutor_reply_text .= "＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\n\n";
         $tutor_reply_text .= "The Tutors 事務局";
 
