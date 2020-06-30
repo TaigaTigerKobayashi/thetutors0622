@@ -4,9 +4,9 @@ session_start();
 include("../../tutors/funcs.php");
 
 $day = $_POST["day"];
-$title = $_POST["textTitle"];
+$title = $_POST["txtTitle"];
 $start = $_POST["start"];
-$end = $_POST["end"];
+// $end = $_POST["end"];
 $text = $_POST["text"];
 $color = $_POST["color"];
 $id = $_SESSION["id"];
@@ -18,7 +18,7 @@ $fb = $_SESSION["fb"];
 
 $pdo = db_conn();
 
-$sql = "INSERT INTO calendar_table(STUDENT,title,text,color,day,start,end)VALUES(:lid,:title,:text,:color,:day,:start,:end)";
+$sql = "INSERT INTO calendar_table(STUDENT,TUTOR,title,text,color,day,start)VALUES(:lid,'未決定',:title,:text,:color,:day,:start)";
 $stmt = $pdo-> prepare($sql);
 $stmt -> bindValue(':lid',$_SESSION["lid"],PDO::PARAM_STR);
 $stmt -> bindValue(':title',$title,PDO::PARAM_STR);
@@ -26,7 +26,7 @@ $stmt -> bindValue(':text',$text,PDO::PARAM_STR);
 $stmt -> bindValue(':color',$color,PDO::PARAM_STR);
 $stmt -> bindValue(':day',$day,PDO::PARAM_STR);
 $stmt -> bindValue(':start',$start,PDO::PARAM_STR);
-$stmt -> bindValue(':end',$end,PDO::PARAM_STR);
+// $stmt -> bindValue(':end',$end,PDO::PARAM_STR);
 $status = $stmt -> execute();
 
 
@@ -57,7 +57,7 @@ $status = $stmt -> execute();
         $auto_reply_text .= "この度は、ご予約頂き誠にありがとうございます。\n下記の内容でご予約を受け付けました。\n\n";
         $auto_reply_text .= "＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\n";
         $auto_reply_text .= "ご予約日時：" . date("Y-m-d H:i") . "\n";
-        $auto_reply_text .= "質問の希望日程：" . $day ." | ". $start . "～". $end. "\n";
+        $auto_reply_text .= "質問の希望日程：" . $day ." | ". $start . "\n";
         $auto_reply_text .= "質問タイトル：" . $title . "\n";
         $auto_reply_text .= "質問内容：" . $text . "\n";
         $auto_reply_text .= "＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\n\n";
@@ -75,7 +75,7 @@ $status = $stmt -> execute();
         $admin_reply_text = $name . "様より下記の内容でご予約がありました。\n\n";
         $admin_reply_text .= "＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\n";
         $admin_reply_text .= "ご予約日時：" . date("Y-m-d H:i") . "\n";
-        $admin_reply_text .= "質問の希望日程：" . $day ." | ". $start . "～". $end. "\n";
+        $admin_reply_text .= "質問の希望日程：" . $day ." | ". $start . "\n";
         $admin_reply_text .= "タイトル：" . $title . "\n";
         $admin_reply_text .= "詳細：" . $text . "\n";
         $admin_reply_text .= "氏名：" . $name . "\n";
@@ -133,8 +133,8 @@ if ($status == false) {
     <a href="cal_tutor.php"><button type="button" class="btn btn-success">tutor</button></a>
     <a href="../../tutors/logout.php"><button type="button" class="btn btn-primary">Logout</button></a>
 
-    <div class="box">
-        <p>予約が完了しました</p>
-    </div>
+    <p>予約が完了しました。</p>
+    <p>マッチング完了メールが迷惑メールに入ってしまう場合があります。</p>
+    <p>この後、予約確認メールが届きますので、迷惑メールに入っていないかご確認お願いします。</p>
 </body>
 </html>

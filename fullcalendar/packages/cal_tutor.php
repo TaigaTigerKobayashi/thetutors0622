@@ -98,6 +98,12 @@ $status = $stmt -> execute();
             <!-- ↓ここにモーダルの説明部分が表示される -->
             <!-- ID: <input type="text" id='txtId' name='txtId'><br> -->
             <ul class="list-group list-group-flush">
+
+              <div class="list-group-item">
+                <label class="text-center">生徒</label>
+                <li id="student_name" class="m-auto"></li>
+              </div>
+
               <div class="list-group-item">
                 <label class="text-center">言語</label>
                 <li id="txtTitle" class="m-auto"></li>
@@ -106,11 +112,6 @@ $status = $stmt -> execute();
               <div class="list-group-item">
                 <label class="text-center">開始時間</label>
                 <li id="start" class="m-auto"></li>
-              </div>
-
-              <div class="list-group-item">
-                <label class="text-center">終了時間</label>
-                <li id="end" class="m-auto"></li>
               </div>
 
               <div class="list-group-item">
@@ -186,10 +187,11 @@ $status = $stmt -> execute();
         //ここでデータベースの内容を繰り返しで表示
         <?php while($r = $stmt -> fetch(PDO::FETCH_ASSOC)){ ?>
           {
+            name:'<?=$r["STUDENT"]?>',
             title: '<?= $r["title"]?>',
             descripcion: '<?=  preg_replace('/[\x00-\x1F\x7F]/','',$r["text"])?>',
             start: '<?= $r["day"].'T'.$r["start"] ?>',
-            end: '<?= $r["day"].'T'.$r["end"] ?>',
+            // end:
             //ここに記述すると個別に色を設定可能
             color: '<?= $r["color"]?>',
             textColor: 'gray'
@@ -216,9 +218,10 @@ $status = $stmt -> execute();
 
         //イベントバーにクリックした時の記述
         eventClick: function (info) {
+          $('#student_name').text(info.event.extendedProps.name + 'さん');
           $('#txtTitle').text(info.event.title);
           $('#start').text(moment.utc(info.event.start).format("HH:mm"));
-          $('#end').text(moment.utc(info.event.end).format("HH:mm"));
+          // $('#end').text(moment.utc(info.event.end).format("HH:mm"));
           $('#txtDescription').text(info.event.extendedProps.descripcion);
           $('#exampleModal').modal();
 

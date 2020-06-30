@@ -6,7 +6,7 @@ include("funcs.php");
 
 $day = $_POST["day"];
 $start = $_POST["start"];
-$end = $_POST["end"];
+// $end = $_POST["end"];
 $student_name = $_POST["STUDENT"];
 $tutor_name = $_POST["TUTOR"];
 $title = $_POST["title"];
@@ -44,8 +44,8 @@ $pdo = db_conn();
 
     // ヘッダー情報を設定
     $header = "MIME-Version: 1.0\n";
-    $header .= "From: The Tutors <arusu.m3@gmail.com>\n";
-    $header .= "Reply-To: The Tutors <arusu.m3@gmail.com>\n";
+    $header .= "From: The Tutors <thetutors777@gmail.com>\n";
+    $header .= "Reply-To: The Tutors <thetutors777@gmail.com>\n";
 
 
     //生徒メールアドレスを抽出するためのSQL
@@ -86,7 +86,7 @@ $pdo = db_conn();
         
 
         //件名の設定
-        $student_reply_subject = '【The Tutors】マッチングが成立しました。';
+        $student_reply_subject = '【The Tutors】マッチングが成立しました。質問の希望日程：' . $day ." | ". $start ."講師名：" . $tutor_name;
 
         // 本文を設定
         $student_reply_text = $student_name . "様\n\n";
@@ -95,9 +95,22 @@ $pdo = db_conn();
         $student_reply_text .= "マッチング成立日時：" . date("Y-m-d H:i") . "\n";
         $student_reply_text .= "講師名：" . $tutor_name . "\n";
         $student_reply_text .= "fb：" . $result_tutor_mail["fb"] . "\n";
-        $student_reply_text .= "質問の希望日程：" . $day ." | ". $start . "～". $end. "\n";
+        $student_reply_text .= "質問の希望日程：" . $day ." | ". $start . "\n";
         $student_reply_text .= "質問タイトル：" . $title . "\n";
         $student_reply_text .= "質問内容：" . $text . "\n";
+        $student_reply_text .= "これからの流れ：" . "\n";
+        $student_reply_text .= "１　上記のFacebookリンクから友達申請をしましょう。" . "\n";
+        $student_reply_text .= "２　Messangerで挨拶をしましょう。（例：はじめまして。東京DEVの山田と言います。当日はよろしくお願いします！！）" . "\n";
+        $student_reply_text .= "３　３分前になったらチューターがFacebookメッセンジャービデオチャットで部屋を用意して、リンクを送ってください。" . "\n";
+        $student_reply_text .= "４ 時間になったら、生徒がルームに入る。（事前連絡なく１０分遅刻したら、終了。１週間の利用禁止）" . "\n";
+        $student_reply_text .= "５　生徒側から自己紹介し、質問タイム（注意点を読んでください。）" . "\n";
+        $student_reply_text .= "６　１時間経ったら、チューターが部屋を閉じてください。（質問が終わってないなどの場合、チューターがよければ延長可能とします。ただし延長はチューターポイントには加算されません。）" . "\n";
+        $student_reply_text .= "７　下記の、アンケートに回答をお願いします。" . "\n";
+        $student_reply_text .= "注意点" . "\n";
+        $student_reply_text .= "・生徒は必ず顔を出してコミュニケーションを取りましょう" . "\n";
+        $student_reply_text .= "・生徒は質問は事前にまとめてお互いの時間を無駄にしないようにしましょう" . "\n";
+        $student_reply_text .= "・エディターなどは、画面共有をしましょう" . "\n";
+        $student_reply_text .= "終了後のアンケートリンク：https://docs.google.com/forms/d/e/1FAIpQLScFyTTd33fpkZuWBb2NwPgiDBEgDD_jBLgKESDCtf1OLo-gVQ/viewform" . "\n";
         $student_reply_text .= "＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\n\n";
         $student_reply_text .= "The Tutors 事務局";
 
@@ -109,7 +122,8 @@ $pdo = db_conn();
     //講師へのメール送信    
         
         //件名の設定
-        $tutor_reply_subject = '【The Tutors】マッチングが成立しました。';
+        $tutor_reply_subject = '【The Tutors】マッチングが成立しました。　質問の希望日程：' . $day ." | ". $start ."講師名：" . $student_name;
+
 
         // 本文を設定
         $tutor_reply_text = $tutor_name . "様\n\n";
@@ -117,10 +131,23 @@ $pdo = db_conn();
         $tutor_reply_text .= "＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\n";
         $tutor_reply_text .= "マッチング成立日時：" . date("Y-m-d H:i") . "\n";
         $tutor_reply_text .= "生徒名：" . $student_name . "\n";
-      　$tutor_reply_text .= "fb：" . $result_student_mail["fb"] . "\n";
-        $tutor_reply_text .= "質問の希望日程：" . $day ." | ". $start . "～". $end. "\n";
+        $tutor_reply_text .= "fb：" . $result_student_mail["fb"] . "\n";
+        $tutor_reply_text .= "質問の希望日程：" . $day ." | ". $start . "\n";
         $tutor_reply_text .= "質問タイトル：" . $title . "\n";
         $tutor_reply_text .= "質問内容：" . $text . "\n";
+        $tutor_reply_text .= "これからの流れ：" . "\n";
+        $tutor_reply_text .= "１　上記のFacebookリンクから友達申請をしましょう。" . "\n";
+        $tutor_reply_text .= "２　Messangerで挨拶をしましょう。（例：はじめまして。東京DEVの山田と言います。当日はよろしくお願いします！！）" . "\n";
+        $tutor_reply_text .= "３　３分前になったらチューターがFacebookメッセンジャービデオチャットで部屋を用意して、リンクを送ってください。" . "\n";
+        $tutor_reply_text .= "４ 時間になったら、生徒がルームに入る。（事前連絡なく１０分遅刻したら、終了。１週間の利用禁止）" . "\n";
+        $tutor_reply_text .= "５　生徒側から自己紹介し、質問タイム（注意点を読んでください。）" . "\n";
+        $tutor_reply_text .= "６　１時間経ったら、チューターが部屋を閉じてください。（質問が終わってないなどの場合、チューターがよければ延長可能とします。ただし延長はチューターポイントには加算されません。）" . "\n";
+        $tutor_reply_text .= "７　下記の、アンケートに回答をお願いします。" . "\n";
+        $tutor_reply_text .= "注意点" . "\n";
+        $tutor_reply_text .= "・生徒は必ず顔を出してコミュニケーションを取りましょう" . "\n";
+        $tutor_reply_text .= "・生徒は質問は事前にまとめてお互いの時間を無駄にしないようにしましょう" . "\n";
+        $tutor_reply_text .= "・エディターなどは、画面共有をしましょう" . "\n";
+        $tutor_reply_text.= "終了後のアンケートリンク：https://docs.google.com/forms/d/e/1FAIpQLScXWQNsk9gHrLwHwfbR9uvd5WK_WBDbWppfzNNx3TdR5gkWCQ/viewform?usp=sf_link" . "\n";
         $tutor_reply_text .= "＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\n\n";
         $tutor_reply_text .= "The Tutors 事務局";
 

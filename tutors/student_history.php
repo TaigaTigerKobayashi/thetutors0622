@@ -42,7 +42,7 @@ if($status==false){
  $view='';
  while( $r = $stmt->fetch(PDO::FETCH_ASSOC)){
   $view .='<p>';
-  $view .=$r["day"].":".$r["start"]."~".$r["end"].'<br>';
+  $view .=$r["day"].":".$r["start"].'<br>';
   $view .='言語 : 「'.$r["title"]."」 概要:".$r["text"].'<br>';
   $view .='受講生徒は : 「'.$r["STUDENT"]."」 さんです。".'<br>';
   $view .='担当講師は : 「'.$r["TUTOR"]."」 さんです。".'<br>';

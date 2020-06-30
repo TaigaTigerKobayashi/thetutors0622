@@ -86,6 +86,7 @@ $status = $stmt -> execute();
   <a href="../../tutors/point.php">ポイント確認画面</a>
   <?php if($page_flg === 1):?>
     <div class="container w-50">
+
     
       <form method="post" action="ca_insert.php">
         <ul class="list-group list-group-flush">
@@ -96,7 +97,7 @@ $status = $stmt -> execute();
 
           <div class="list-group-item pt-3 pb-3">
             <label>質問タイトル</label>
-            <li><?= $_POST["textTitle"]?></li>
+            <li><?= $_POST["txtTitle"]?></li>
           </div>
 
           <div class="list-group-item pt-3 pb-3">
@@ -104,10 +105,10 @@ $status = $stmt -> execute();
             <li><?= $_POST["start"]?></li>
           </div>
 
-          <div class="list-group-item pt-3 pb-3">
+          <!-- <div class="list-group-item pt-3 pb-3">
             <label>終了時間</label>
-            <li><?= $_POST["end"]?></li>
-          </div>
+            <li></li>
+          </div> -->
 
           <div class="list-group-item pt-3 pb-3">
             <label>質問内容</label>
@@ -120,17 +121,17 @@ $status = $stmt -> execute();
         </div>
 
         <div class="form-group">
-          <input type="hidden" name="textTitle" class="form-control" id="exampleFormControlInput2" value="<?= $_POST["textTitle"]?>">
+          <input type="hidden" name="txtTitle" class="form-control" id="exampleFormControlInput2" value="<?= $_POST["txtTitle"]?>">
         </div>
 
         <div class="form-group">
           
           <input type="hidden" name="start" class="form-control" id="exampleFormControlInput3" value="<?= $_POST["start"]?>">
         </div>
-
+<!-- 
         <div class="form-group">
           <input type="hidden" name="end" class="form-control" id="exampleFormControlInput4" value="<?= $_POST["end"]?>">
-        </div>
+        </div> -->
 
         <div class="form-group">
           <textarea type="hidden" name="text" class="form-control" id="exampleFormControlTextarea1" rows="3"><?= $_POST["text"]?></textarea>
@@ -143,6 +144,7 @@ $status = $stmt -> execute();
   
       </form>
     </div>
+
     
   <?php else: ?>
   <div class="container h-100">
@@ -173,26 +175,36 @@ $status = $stmt -> execute();
             <!-- ↓ここにモーダルの説明部分が表示される -->
               <div class="form-group">
                 <label for="txtDay">日付</label>
-                <input type="text" class="form-control" id="txtDay" name="day">
+                <input type="text" class="form-control" id="txtDay" name="day" required>
               </div>
 
               <div class="form-group">
                 <label for="txtTitle">言語</label>
-                <input type="text" class="form-control" id="txtTitle" name="textTitle">
+                <select class="form-control" id="txtTitle" name="txtTitle">
+                  <option>HTML/CSS</option>
+                  <option>Javascipt</option>
+                  <option>PHP</option>
+                  <option>データベース</option>
+                  <option>Ruby</option>
+                  <option>Unity</option>
+                  <option>UNIX</option>
+                  <option>エディタ/開発/環境構築プラットフォーム</option>
+                  <option>サーバー環境を作る</option>
+                  <option>Google提供ツール</option>
+                  <option>iPhone/Anroid</option>
+                  <option>デザイン/アート</option>
+                  <option>その他の言語</option>
+                </select>
+                <!-- <input type="text" class="form-control" id="txtTitle" name="textTitle"> -->
               </div>
 
               <div class="form-group">
                 <label for="start">開始時間</label>
                 <select class="form-control" id="start" name="start">
-                  <option>18:00</option>
-                  <option>19:00</option>
-                  <option>20:00</option>
-                  <option>21:00</option>
-                  <option>22:00</option>
                 </select>
               </div>
 
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="end">終了時間</label>
                 <select class="form-control" id="end" name="end">
                   <option>19:00</option>
@@ -200,11 +212,11 @@ $status = $stmt -> execute();
                   <option>21:00</option>
                   <option>22:00</option>
                 </select>
-              </div>
+              </div> -->
 
               <div class="form-group">
                 <label for="text">詳細</label>
-                <textarea class="form-control" id="text" rows="3" name="text"></textarea>
+                <textarea class="form-control" id="text" rows="3" name="text" required></textarea>
               </div>
 
               <div class="form-group">
@@ -238,6 +250,11 @@ $status = $stmt -> execute();
             <!-- ID: <input type="text" id='txtId' name='txtId'><br> -->
             <ul class="list-group list-group-flush">
               <div class="list-group-item">
+                <label class="text-center">講師</label>
+                <li id="tutor_name" class="m-auto"></li>
+              </div>
+
+              <div class="list-group-item">
                 <label class="text-center">言語</label>
                 <li id="txtTitle1" class="m-auto"></li>
               </div>
@@ -245,11 +262,6 @@ $status = $stmt -> execute();
               <div class="list-group-item">
                 <label class="text-center">開始時間</label>
                 <li id="start1" class="m-auto"></li>
-              </div>
-
-              <div class="list-group-item">
-                <label class="text-center">終了時間</label>
-                <li id="end1" class="m-auto"></li>
               </div>
 
               <div class="list-group-item">
@@ -288,7 +300,6 @@ $status = $stmt -> execute();
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var calendarEl = document.getElementById('calendar');
-
       var calendar = new FullCalendar.Calendar(calendarEl, {
         plugins: ['interaction', 'dayGrid', 'timeGrid'],
         header: { //ヘッダー選択
@@ -297,7 +308,7 @@ $status = $stmt -> execute();
           right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
         locale: 'ja', //日本語選択
-        businessHours: true, //土日を色付け
+        businessHours: false, //土日を色付け
         eventTimeFormat: {
           hour: 'numeric',
           minute: '2-digit'
@@ -307,11 +318,44 @@ $status = $stmt -> execute();
         selectable: true, //日付のクリックを可能に
         selectMirror: true, //クリック関係（詳細不明）
         //日付をクリックした時の記述
+        
         dateClick: function (info) {
-          // alert('Date: ' + info.dateStr);
-          $('#txtDay').val(info.dateStr);
-          $('#exampleModal').modal();
+          // alert('Date: ' + info.dateStr)
+          if(info.date >= (Date.now() - 60*1000*60*24)){
+            // クラスがfc-sunだったら表示しないとする
+            // else
+            $('#txtDay').val(info.dateStr);
+            $('#exampleModal').modal();
+            var start = info.date;  
+            
+            start.setHours(15,0,0,0);
+            $('#start').empty();
+            if (new Date() < start) {
+                $('#start').append( $("<option>").html("18:00") );
+              }
+            start.setHours(16,0,0,0);
+            if (new Date() < start) {
+                $('#start').append( $("<option>").html("19:00") );
+            }
+            start.setHours(17,0,0,0);
+            if (new Date() < start) {
+                $('#start').append( $("<option>").html("20:00") );
+            }
+            start.setHours(18,0,0,0);
+            if (new Date() < start) {
+                $('#start').append( $("<option>").html("21:00") );
+            }
+            start.setHours(19,0,0,0);
+            if (new Date() < start) {
+                $('#start').append( $("<option>").html("22:00") );
+            }
+
+                    }
+                    
         },
+
+        
+
 
         events: [ //ここに記入してイベントを作る
 
@@ -321,10 +365,11 @@ $status = $stmt -> execute();
           <?php else:?>
           <?php while($r = $stmt -> fetch(PDO::FETCH_ASSOC)){?>
           {
+            name:'<?=$r["TUTOR"]?>',
             title: '<?= $r["title"]?>',
             descripcion: '<?= preg_replace('/[\x00-\x1F\x7F]/','',$r["text"])?>',
             start: '<?= $r["day"].'T'.$r["start"] ?>',
-            end: '<?= $r["day"].'T'.$r["end"] ?>',
+            // end: ,
             //ここに記述すると個別に色を設定可能
             color: '<?= $r["color"]?>',
             textColor: 'gray'
@@ -351,9 +396,10 @@ $status = $stmt -> execute();
 
         //イベントバーにクリックした時の記述
         eventClick: function (info) {
+          $('#tutor_name').text(info.event.extendedProps.name + 'さん');
           $('#txtTitle1').text(info.event.title);
           $('#start1').text(moment(info.event.start).format("HH:mm"));
-          $('#end1').text(moment(info.event.end).format("HH:mm"));
+          // $('#end1').text(moment(info.event.end).format("HH:mm"));
           $('#txtDescription').text(info.event.extendedProps.descripcion);
           $('#exampleModal1').modal();
         }

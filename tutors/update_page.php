@@ -39,7 +39,7 @@ foreach($result as $row){
      <label>STUDENT：<input type="text" name="STUDENT" value="<?=$row["STUDENT"]?>"></label><br>
      <label>質問日：<input type="text" name="day" value="<?=$row["day"]?>"></label><br>
      <label>開始時刻：<input type="text" name="start" value="<?=$row["start"]?>"></label><br>
-     <label>終了時刻：<input type="text" name="end" value="<?=$row["end"]?>"></label><br>
+     <!-- <label>終了時刻：<input type="text" name="end" value="<?=$row["end"]?>"></label><br> -->
      <label>TUTOR：<input type="text" name="TUTOR" value="<?=$row["TUTOR"]?>"></label><br>
      <label>質問タイトル：<input type="text" name="title" value="<?=$row["title"]?>"></label><br>
      <label>質問内容：<textArea name="text" rows="4" cols="40"><?=$row["text"]?></textArea></label><br>

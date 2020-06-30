@@ -3,7 +3,7 @@ session_start();
 include("funcs.php");
 $pdo = db_conn();
 
-$sql = "SELECT TUTOR,COUNT(TUTOR) AS COUNT FROM CALENDAR_TABLE GROUP BY TUTOR ORDER BY COUNT DESC";
+$sql = "SELECT TUTOR,COUNT(TUTOR) AS COUNT FROM calendar_table GROUP BY TUTOR ORDER BY COUNT DESC";
 $stmt = $pdo->prepare($sql);
 $status = $stmt->execute();
 

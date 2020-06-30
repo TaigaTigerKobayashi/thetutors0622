@@ -21,8 +21,8 @@ if( !empty($_POST['btn_confirm']) ) {
 
         // ヘッダー情報を設定
         $header = "MIME-Version: 1.0\n";
-        $header .= "From: TheTutors <arusu.m3@gmail.com>\n";
-        $header .= "Reply-To: TheTutors <arusu.m3@gmail.com>\n";
+        $header .= "From: TheTutors <thetutors777@gmail.com>\n";
+        $header .= "Reply-To: TheTutors <thetutors777@gmail.com>\n";
 
         // 件名を設定
         $auto_reply_subject = 'お問い合わせありがとうございます。';
@@ -53,7 +53,7 @@ if( !empty($_POST['btn_confirm']) ) {
     
 
         // 運営側へメール送信
-        mb_send_mail( 'arusu.m3@gmail.com', $admin_reply_subject, $admin_reply_text, $header);
+        mb_send_mail( 'thetutors777@gmail.com', $admin_reply_subject, $admin_reply_text, $header);
     
 }
 ?>
