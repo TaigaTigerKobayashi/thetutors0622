@@ -28,6 +28,15 @@ $status = $stmt -> execute();
 <html lang="en">
 
 <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5K6X55XB0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B5K6X55XB0');
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
@@ -322,36 +331,37 @@ $status = $stmt -> execute();
         dateClick: function (info) {
           // alert('Date: ' + info.dateStr)
           if(info.date >= (Date.now() - 60*1000*60*24)){
-            // クラスがfc-sunだったら表示しないとする
-            // else
-            $('#txtDay').val(info.dateStr);
-            $('#exampleModal').modal();
-            var start = info.date;  
-            
-            start.setHours(15,0,0,0);
-            $('#start').empty();
-            if (new Date() < start) {
-                $('#start').append( $("<option>").html("18:00") );
+            if(info.date.getDay()==0){
+                return false;
+            }else{
+              $('#txtDay').val(info.dateStr);
+              $('#exampleModal').modal();
+              var start = info.date;  
+              
+              start.setHours(15,0,0,0);
+              $('#start').empty();
+              if (new Date() < start) {
+                  $('#start').append( $("<option>").html("18:00") );
+                }
+              start.setHours(16,0,0,0);
+              if (new Date() < start) {
+                  $('#start').append( $("<option>").html("19:00") );
               }
-            start.setHours(16,0,0,0);
-            if (new Date() < start) {
-                $('#start').append( $("<option>").html("19:00") );
-            }
-            start.setHours(17,0,0,0);
-            if (new Date() < start) {
-                $('#start').append( $("<option>").html("20:00") );
-            }
-            start.setHours(18,0,0,0);
-            if (new Date() < start) {
-                $('#start').append( $("<option>").html("21:00") );
-            }
-            start.setHours(19,0,0,0);
-            if (new Date() < start) {
-                $('#start').append( $("<option>").html("22:00") );
-            }
+              start.setHours(17,0,0,0);
+              if (new Date() < start) {
+                  $('#start').append( $("<option>").html("20:00") );
+              }
+              start.setHours(18,0,0,0);
+              if (new Date() < start) {
+                  $('#start').append( $("<option>").html("21:00") );
+              }
+              start.setHours(19,0,0,0);
+              if (new Date() < start) {
+                  $('#start').append( $("<option>").html("22:00") );
+              }
 
-                    }
-                    
+            }}
+                      
         },
 
         
