@@ -2,6 +2,15 @@
 <html lang="en">
 
 <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5K6X55XB0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B5K6X55XB0');
+</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -39,7 +48,8 @@
     <div>
       <img src="logo.png" class="img-fluid" alt="ロゴ">
     </div>
-    <h1 class="h3 m-2 mb-3 font-weight-normal">ログイン</h1>
+    <p></p>
+    <!-- <h1 class="h3 m-2 mb-3 font-weight-normal">ログイン</h1> -->
     <label for="inputUserID" class="sr-only">ユーザーID</label>
     <input type="text" name="lid" id="inputUserID" class="form-control mb-3" placeholder="ユーザーID" required autofocus>
     <label for="inputPassword" class="sr-only">パスワード</label>
@@ -52,7 +62,12 @@
     <button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
     <div class="link-area">
       <!-- <a class="password-forget" href="" style="display:block;">パスワードをお忘れですか？</a> -->
+        <p></p>
+       <p>G's ACADEMY同期限定のサービスです。</p>
+       <p>FacebookURLはMessangerビデオのため<br>マッチング相手のみ通知されます。<br>
+       FacebookURLの取得方法は、<br>左側のビデオの30秒時点をご覧下さい。</p>
       <a class="password-forget" href="contact.php" style="display:block;">お問い合わせはこちら</a>
+      <p></p>
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         会員登録
       </button>
@@ -89,7 +104,7 @@
             <label for="inputEmail" class="sr-only">Email address</label>
             <input type="text" name="email" class="form-control mb-3" placeholder="Email address" required>
             <label for="inputPassword" class="sr-only">Password</label>
-            <input type="text" name="fb" class="form-control mb-3" placeholder="facebook URL" required>
+            <input type="text" name="fb" class="form-control mb-3" placeholder="Facebook URL" required>
             <label for="URL" class="sr-only">facebook URL</label>
             <input type="password" name="lpw" class="form-control mb-3" placeholder="Password" required>
             <button class="btn btn-lg btn-primary btn-block" type="submit">登録する</button>
