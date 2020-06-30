@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja">
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
@@ -19,7 +19,9 @@
   <link rel="stylesheet" href="css/style.css">
 
   <style>
-
+    .login{
+      width:3600px;
+    }
     .modal-dialog{
       display: flex;
       flex-direction: column;
@@ -32,6 +34,7 @@
 </head>
 
 <body class="text-center">
+<div class="login">
   <form class="form-signin" method="POST" action="login_act.php">
     <div>
       <img src="logo.png" class="img-fluid" alt="ロゴ">
@@ -54,8 +57,14 @@
         会員登録
       </button>
     </div>
-    <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
+</div>
   </form>
+    <div class="embed-responsive embed-responsive-1by1">
+      <iframe width="200px" height="133px" src="https://www.youtube.com/embed/JHg-cy4ZWDI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="embed-responsive embed-responsive-1by1">
+      <iframe width="200px" height="133px" src="https://www.youtube.com/embed/zlc8HW7JToU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
 
   <!-- Button trigger modal -->
 
