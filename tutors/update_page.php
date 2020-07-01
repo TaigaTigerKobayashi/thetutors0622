@@ -5,7 +5,7 @@ include("funcs.php");
 $pdo = db_conn();
 //２．データ登録SQL作成
 // とにかくこのページに来たら未設定の予約一覧が表示されるようにしたい＝TUTOR==null
-$stmt = $pdo->prepare("SELECT * FROM calendar_table WHERE TUTOR IS NULL");
+$stmt = $pdo->prepare("SELECT * FROM calendar_table WHERE TUTOR = '未決定'");
 // $stmt->bindValue(":id",$id,PDO::PARAM_INT); nullはとってきた値ではないので。
 $status = $stmt->execute();
 //３．データ表示
@@ -18,15 +18,6 @@ if($status==false) {
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5K6X55XB0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-B5K6X55XB0');
-</script>
   <meta charset="UTF-8">
   <title>データ更新</title>
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -48,7 +39,7 @@ foreach($result as $row){
      <label>STUDENT：<input type="text" name="STUDENT" value="<?=$row["STUDENT"]?>"></label><br>
      <label>質問日：<input type="text" name="day" value="<?=$row["day"]?>"></label><br>
      <label>開始時刻：<input type="text" name="start" value="<?=$row["start"]?>"></label><br>
-     <!-- <label>終了時刻：<input type="text" name="end" value="<?=$row["end"]?>"></label><br> -->
+     <!-- <label>終了時刻：<input type="text" name="end" value=""></label><br> -->
      <label>TUTOR：<input type="text" name="TUTOR" value="<?=$row["TUTOR"]?>"></label><br>
      <label>質問タイトル：<input type="text" name="title" value="<?=$row["title"]?>"></label><br>
      <label>質問内容：<textArea name="text" rows="4" cols="40"><?=$row["text"]?></textArea></label><br>
