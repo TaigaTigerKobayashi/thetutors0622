@@ -50,7 +50,7 @@
     </div>
     <p></p>
     <!-- <h1 class="h3 m-2 mb-3 font-weight-normal">ログイン</h1> -->
-    <label for="inputUserID" class="sr-only">ユーザーID</label>
+    <label for="inputUserID" class="sr-only">名前（登録されたフルネーム）</label>
     <input type="text" name="lid" id="inputUserID" class="form-control mb-3" placeholder="ユーザーID" required autofocus>
     <label for="inputPassword" class="sr-only">パスワード</label>
     <input type="password" name="lpw" id="inputPassword" class="form-control" placeholder="パスワード" required>
