@@ -72,8 +72,9 @@
         会員登録
       </button>
     </div>
-</div>
   </form>
+</div>
+
     <div class="embed-responsive embed-responsive-1by1">
       <iframe width="200px" height="133px" src="https://www.youtube.com/embed/JHg-cy4ZWDI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
