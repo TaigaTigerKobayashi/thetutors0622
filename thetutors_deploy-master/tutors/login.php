@@ -43,8 +43,42 @@
 </head>
 
 <body class="text-center">
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '{your-app-id}',
+      cookie     : true,
+      xfbml      : true,
+      version    : '{api-version}'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
 <div class="login">
   <form class="form-signin" method="POST" action="login_act.php">
+  <div style="width:100%" class="mt-5 bg-success text-white">
+      <h5>おすすめカテゴリーのチューター（スキルシートA）<h2>
+      <p class="h6">HTML基礎構文:19人<br>
+      CSSフレックスボックス:3人<br>
+      FontAwesome:4人<br>
+      javascriptでスライドショー:3人<br>
+      React:2人<br>
+      MySQL基礎:3人<br>
+      <a class="h5" href="https://docs.google.com/spreadsheets/d/1IzQxzACq5yS-26lEBdETvbmyPYMYsA-o3lt8zetMeFg/edit?usp=sharing">その他一覧</a>
+  </div>
+    <p></p>
     <div>
       <img src="logo.png" class="img-fluid" alt="ロゴ">
     </div>
@@ -76,7 +110,7 @@
 </div>
 
     <div class="embed-responsive embed-responsive-1by1">
-      <iframe width="200px" height="133px" src="https://www.youtube.com/embed/JHg-cy4ZWDI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe width="200px" height="133px" src="https://www.youtube.com/embed/JHg-cy4ZWDI?autoplay=1&loop=1&autopause=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
     <div class="embed-responsive embed-responsive-1by1">
       <iframe width="200px" height="133px" src="https://www.youtube.com/embed/zlc8HW7JToU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
